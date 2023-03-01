@@ -85,52 +85,34 @@ scene.add(moon)
 
 moon.position.set(128.70, 73.00, 59.38)
 
-const loader = new GLTFLoader();
+// const loader = new GLTFLoader();
 
-loader.load(
-  './basement_home_office_badeskchallenge/scene.gltf',
-  function (gltf) {
-    let room = gltf.scene
-    room.traverse( function ( child ) {
-      if(child.isMesh) {
-        // console.log(textureMap[child.material.name])
-        const textureObj = textureMap[child.material.name]
-        if(textureObj.color){
-          child.material = new THREE.MeshToonMaterial({color: textureObj.color})
-        }
-
-        // const texture = new THREE.TextureLoader().load(textureObj.texture)
-        // texture.flipY = false
-        // child.material.map = texture
-        // if(child.material.name === "banner"){
-        //   child.material.map = picTexture;
-        //   child.material.map.needsUpdate = true;
-        // }
-        // if(child.material.name === "sofa"){
-        //     child.material = new THREE.MeshToonMaterial({color: 0x3e3e3f})
-        // }
-        // if(child.material.name === "fear_the_dark"){
-        //     child.material = new THREE.MeshToonMaterial({color: 0x3e3e3f})
-        //     child.material.map = fearTheDark;
-        // }
-        // if(child.material.name === "walls"){
-        //     child.material = new THREE.MeshToonMaterial({color: 0x484a47})
-        // }
-      }
-    })
-    room.scale.set(4,4,4)
-    room.rotation.set(0,2.5,0)
-    scene.add(room)
-  },
-  function ( xhr ) {
-		console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
-	},
-	function ( error ) {
-		console.log( 'An error happened' );
-	}
-)
-window.camera = camera
-window.controls = controls
+// loader.load(
+//   './basement_home_office_badeskchallenge/scene.gltf',
+//   function (gltf) {
+//     let room = gltf.scene
+//     room.traverse( function ( child ) {
+//       if(child.isMesh) {
+//         // console.log(textureMap[child.material.name])
+//         const textureObj = textureMap[child.material.name]
+//         if(textureObj.color){
+//           child.material = new THREE.MeshToonMaterial({color: textureObj.color})
+//         }
+//       }
+//     })
+//     room.scale.set(4,4,4)
+//     room.rotation.set(0,2.5,0)
+//     scene.add(room)
+//   },
+//   function ( xhr ) {
+// 		console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+// 	},
+// 	function ( error ) {
+// 		console.log( 'An error happened' );
+// 	}
+// )
+// window.camera = camera
+// window.controls = controls
 // function moveCamera() {
 //   const t = document.body.getBoundingClientRect().top
 //   moon.rotation.x += 0.05
