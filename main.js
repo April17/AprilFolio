@@ -3,8 +3,19 @@ import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
+//Textures
+const spaceTexture = new THREE.TextureLoader().load('space-background.jpg')
+const fearTheDark = new THREE.TextureLoader().load('./basement_home_office_badeskchallenge/textures/fear_the_dark_diffuse.png')
+fearTheDark.flipY = false
+const picTexture = new THREE.TextureLoader().load('pic.jpg')
+const moonTexture = new THREE.TextureLoader().load('moon.jpg')
+const normalTexture = new THREE.TextureLoader().load('normal.jpg')
 
+
+
+//Camera and Scene
 const scene  = new THREE.Scene()
+// scene.background = spaceTexture
 
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
 
@@ -19,59 +30,41 @@ renderer.setPixelRatio(window.devicePixelRatio)
 renderer.setSize(window.innerWidth, window.innerHeight)
 camera.position.set(0.58, 5.01, -0.64)
 controls.object.position.set(0.6771760415180671, 5.046769410125615, -0.1397820593075263)
-controls.target = new THREE.Vector3(0.8950562035959816, 5.2788228345554264, -5.169569227773779);
+// controls.target = new THREE.Vector3(-115.53, 72.22, 74.89);
 renderer.render(scene, camera)
 
-const geometry = new THREE.TorusGeometry(10, 3, 16, 100)
-const material = new THREE.MeshStandardMaterial({color: 0xFF6347})
-const torus = new THREE.Mesh(geometry, material)
 
-// scene.add(torus)
-
+//Lighting
 const spotLight = new THREE.SpotLight(0xffffff)
 spotLight.position.set(1.04,9.93,2.07)
 
-const pointLight = new THREE.PointLight(0xf8e05a)
-pointLight.position.set(1.75, 9.69, -35.22)
+const pointLight = new THREE.PointLight(0xffffff)
+pointLight.position.set(8.80, 6.42, -3.67)
 
 const ambientLight = new THREE.AmbientLight(0xffffff)
 
-scene.add(pointLight)
+scene.add(pointLight, ambientLight, spotLight)
 
 const lightHelper = new THREE.SpotLightHelper(spotLight)
 const pointLightHelper = new THREE.PointLightHelper(pointLight)
 const gridHelper = new THREE.GridHelper(200, 50)
-scene.add(lightHelper, gridHelper, pointLightHelper)
+scene.add(gridHelper, pointLightHelper)
 
 
-
+//3D Objects
 function addStar() {
   const geometry = new THREE.SphereGeometry(0.25, 24, 24)
   const material = new THREE.MeshStandardMaterial({color: 0xffffff})
   const star = new THREE.Mesh(geometry, material)
 
-  const [x, y, z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread(100))
+  const [x, y, z] = Array(3).fill().map(() => THREE.MathUtils.randFloat (20, 350))
 
   star.position.set(x, y, z)
   scene.add(star)
 
 }
 
-// Array(200).fill().forEach(addStar)
-
-const spaceTexture = new THREE.TextureLoader().load('space-background.jpg')
-scene.background = spaceTexture
-
-const picTexture = new THREE.TextureLoader().load('pic.jpg')
-const pic = new THREE.Mesh(
-  new THREE.BoxGeometry(3,3,3),
-  new THREE.MeshBasicMaterial({map: picTexture})
-)
-
-// scene.add(pic)
-
-const moonTexture = new THREE.TextureLoader().load('moon.jpg')
-const normalTexture = new THREE.TextureLoader().load('normal.jpg')
+Array(400).fill().forEach(addStar)
 
 const moon = new THREE.Mesh(
   new THREE.SphereGeometry(3, 32, 32),
@@ -83,33 +76,35 @@ const moon = new THREE.Mesh(
 
 scene.add(moon)
 
-moon.position.set(1.75, 9.69, -35.22)
-
-pic.position.z = -5;
-pic.position.x = 2;
+moon.position.set(128.70, 73.00, 59.38)
 
 const loader = new GLTFLoader();
 
 loader.load(
-  './isometric_bedroom/scene.gltf',
+  './basement_home_office_badeskchallenge/scene.gltf',
   function (gltf) {
     let room = gltf.scene
     room.traverse( function ( child ) {
-      //get the meshes
-      if ( child.isMesh ) {
-        console.log(child.material)
-        // child.castShadow = true
-        // only replace texture if a texture map exist
-        if (child.material.name === "banner"){
-        //replace the map with another THREE texture
-        // console.log(child)
-        child.material.map = picTexture;
-        //update
-        child.material.map.needsUpdate = true;
+      if(child.isMesh ) {
+        console.log(child.material.name)
+        if(child.material.name === "banner"){
+          child.material.map = picTexture;
+          child.material.map.needsUpdate = true;
+        }
+        if(child.material.name === "sofa"){
+            child.material = new THREE.MeshToonMaterial({color: 0x3e3e3f})
+        }
+        if(child.material.name === "fear_the_dark"){
+            child.material = new THREE.MeshToonMaterial({color: 0x3e3e3f})
+            child.material.map = fearTheDark;
+        }
+        if(child.material.name === "walls"){
+            child.material = new THREE.MeshToonMaterial({color: 0x484a47})
         }
       }
     })
-    room.scale.set(0.1,0.1,0.1)
+    room.scale.set(4,4,4)
+    room.rotation.set(0,2.5,0)
     scene.add(room)
   },
   function ( xhr ) {
@@ -141,10 +136,6 @@ window.controls = controls
 
 function animate(){
   requestAnimationFrame(animate)
-
-  torus.rotation.x += 0.01
-  torus.rotation.y += 0.0005
-  torus.rotation.z += 0.01
 
   moon.rotation.x += 0.0002
   moon.rotation.y += 0.0002
