@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-theejsroom-dev-232806-authRole",
+      "UnauthRoleArn": "arn:aws:iam::456082219467:role/amplify-theejsroom-dev-232806-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::456082219467:role/amplify-theejsroom-dev-232806-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-theejsroom-dev-232806-deployment",
+      "UnauthRoleName": "amplify-theejsroom-dev-232806-unauthRole",
+      "StackName": "amplify-theejsroom-dev-232806",
+      "StackId": "arn:aws:cloudformation:us-east-2:456082219467:stack/amplify-theejsroom-dev-232806/3b234e70-b7fa-11ed-8bdb-061d84117c3c",
+      "AmplifyAppId": "d2h9pwgphvkhx1"
+    },
+    "categories": {
+      "hosting": {
+        "S3AndCloudFront": {}
+      }
+    }
+  }
+}

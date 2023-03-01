@@ -1,7 +1,7 @@
 import "./style.css"
-import * as THREE from './node_modules/three/build/three.module.js'
-import { OrbitControls } from './node_modules/three/examples/jsm/controls/OrbitControls'
-import { GLTFLoader } from './node_modules/three/examples/jsm/loaders/GLTFLoader.js';
+import * as THREE from 'three'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { textureMap } from "./textureMap";
 
 //Textures
