@@ -1,7 +1,7 @@
 import "./style.css"
-import * as THREE from 'three'
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import * as THREE from './node_modules/three/build/three.module.js'
+import { OrbitControls } from './node_modules/three/examples/jsm/controls/OrbitControls'
+import { GLTFLoader } from './node_modules/three/examples/jsm/loaders/GLTFLoader.js';
 import { textureMap } from "./textureMap";
 
 //Textures
@@ -85,34 +85,34 @@ scene.add(moon)
 
 moon.position.set(128.70, 73.00, 59.38)
 
-// const loader = new GLTFLoader();
+const loader = new GLTFLoader();
 
-// loader.load(
-//   './basement_home_office_badeskchallenge/scene.gltf',
-//   function (gltf) {
-//     let room = gltf.scene
-//     room.traverse( function ( child ) {
-//       if(child.isMesh) {
-//         // console.log(textureMap[child.material.name])
-//         const textureObj = textureMap[child.material.name]
-//         if(textureObj.color){
-//           child.material = new THREE.MeshToonMaterial({color: textureObj.color})
-//         }
-//       }
-//     })
-//     room.scale.set(4,4,4)
-//     room.rotation.set(0,2.5,0)
-//     scene.add(room)
-//   },
-//   function ( xhr ) {
-// 		console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
-// 	},
-// 	function ( error ) {
-// 		console.log( 'An error happened' );
-// 	}
-// )
-// window.camera = camera
-// window.controls = controls
+loader.load(
+  './basement_home_office_badeskchallenge/scene.gltf',
+  function (gltf) {
+    let room = gltf.scene
+    room.traverse( function ( child ) {
+      if(child.isMesh) {
+        // console.log(textureMap[child.material.name])
+        const textureObj = textureMap[child.material.name]
+        if(textureObj.color){
+          child.material = new THREE.MeshToonMaterial({color: textureObj.color})
+        }
+      }
+    })
+    room.scale.set(4,4,4)
+    room.rotation.set(0,2.5,0)
+    scene.add(room)
+  },
+  function ( xhr ) {
+		console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+	},
+	function ( error ) {
+		console.log( 'An error happened' );
+	}
+)
+window.camera = camera
+window.controls = controls
 // function moveCamera() {
 //   const t = document.body.getBoundingClientRect().top
 //   moon.rotation.x += 0.05
