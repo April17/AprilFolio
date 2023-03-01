@@ -2,6 +2,7 @@ import "./style.css"
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { textureMap } from "./textureMap";
 
 //Textures
 const spaceTexture = new THREE.TextureLoader().load('space-background.jpg')
@@ -29,26 +30,32 @@ const controls = new OrbitControls(camera, renderer.domElement)
 renderer.setPixelRatio(window.devicePixelRatio)
 renderer.setSize(window.innerWidth, window.innerHeight)
 camera.position.set(0.58, 5.01, -0.64)
-controls.object.position.set(0.6771760415180671, 5.046769410125615, -0.1397820593075263)
+controls.object.position.set(0.7928432993777849, 25.093997470840975, -3.5118393051407386)
+// controls.object.position.set(0.67, 5.04, -0.13)
 // controls.target = new THREE.Vector3(-115.53, 72.22, 74.89);
 renderer.render(scene, camera)
 
-
 //Lighting
-const spotLight = new THREE.SpotLight(0xffffff)
-spotLight.position.set(1.04,9.93,2.07)
+const spotLight = new THREE.SpotLight(0xffeacc)
+spotLight.position.set(0.56,10.51,-2.37)
+const spotLightTarget = new THREE.Object3D()
+spotLightTarget.position.set(0.21, -0.23, -1.44)
 
-const pointLight = new THREE.PointLight(0xffffff)
+const lampLight = new THREE.SpotLight(0xffeacc)
+lampLight.position.set(0.50,5.50,5.52)
+
+const pointLight = new THREE.PointLight(0xffeacc)
 pointLight.position.set(8.80, 6.42, -3.67)
 
-const ambientLight = new THREE.AmbientLight(0xffffff)
+const ambientLight = new THREE.AmbientLight(0xffeacc)
 
-scene.add(pointLight, ambientLight, spotLight)
+scene.add(pointLight, ambientLight, spotLight, lampLight)
 
-const lightHelper = new THREE.SpotLightHelper(spotLight)
-const pointLightHelper = new THREE.PointLightHelper(pointLight)
-const gridHelper = new THREE.GridHelper(200, 50)
-scene.add(gridHelper, pointLightHelper)
+// const lightHelper = new THREE.SpotLightHelper(lampLight)
+// const lightHelper2 = new THREE.SpotLightHelper(spotLight)
+// const pointLightHelper = new THREE.PointLightHelper(pointLight)
+// const gridHelper = new THREE.GridHelper(200, 50)
+// scene.add(lightHelper, lightHelper2)
 
 
 //3D Objects
@@ -85,22 +92,30 @@ loader.load(
   function (gltf) {
     let room = gltf.scene
     room.traverse( function ( child ) {
-      if(child.isMesh ) {
-        console.log(child.material.name)
-        if(child.material.name === "banner"){
-          child.material.map = picTexture;
-          child.material.map.needsUpdate = true;
+      if(child.isMesh) {
+        // console.log(textureMap[child.material.name])
+        const textureObj = textureMap[child.material.name]
+        if(textureObj.color){
+          child.material = new THREE.MeshToonMaterial({color: textureObj.color})
         }
-        if(child.material.name === "sofa"){
-            child.material = new THREE.MeshToonMaterial({color: 0x3e3e3f})
-        }
-        if(child.material.name === "fear_the_dark"){
-            child.material = new THREE.MeshToonMaterial({color: 0x3e3e3f})
-            child.material.map = fearTheDark;
-        }
-        if(child.material.name === "walls"){
-            child.material = new THREE.MeshToonMaterial({color: 0x484a47})
-        }
+
+        // const texture = new THREE.TextureLoader().load(textureObj.texture)
+        // texture.flipY = false
+        // child.material.map = texture
+        // if(child.material.name === "banner"){
+        //   child.material.map = picTexture;
+        //   child.material.map.needsUpdate = true;
+        // }
+        // if(child.material.name === "sofa"){
+        //     child.material = new THREE.MeshToonMaterial({color: 0x3e3e3f})
+        // }
+        // if(child.material.name === "fear_the_dark"){
+        //     child.material = new THREE.MeshToonMaterial({color: 0x3e3e3f})
+        //     child.material.map = fearTheDark;
+        // }
+        // if(child.material.name === "walls"){
+        //     child.material = new THREE.MeshToonMaterial({color: 0x484a47})
+        // }
       }
     })
     room.scale.set(4,4,4)
