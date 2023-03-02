@@ -2,6 +2,7 @@ import "./style.css"
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { FirstPersonControls } from 'three/addons/controls/FirstPersonControls.js';
 import { textureMap } from "./textureMap";
 
 //Textures
@@ -25,15 +26,48 @@ const renderer = new THREE.WebGLRenderer({
   antialias: true 
 })
 
-const controls = new OrbitControls(camera, renderer.domElement)
+// const controls = new OrbitControls(camera, renderer.domElement)
+const controls = new FirstPersonControls(camera, renderer.domElement)
+controls.lookSpeed = 0.8
+controls.movementSpeed = 1
 
 renderer.setPixelRatio(window.devicePixelRatio)
 renderer.setSize(window.innerWidth, window.innerHeight)
 camera.position.set(0.58, 5.01, -0.64)
-controls.object.position.set(0.7928432993777849, 25.093997470840975, -3.5118393051407386)
+// controls.object.position.set(0.7928432993777849, 25.093997470840975, -3.5118393051407386)
 // controls.object.position.set(0.67, 5.04, -0.13)
 // controls.target = new THREE.Vector3(-115.53, 72.22, 74.89);
 renderer.render(scene, camera)
+
+// document.onkeydown = checkKey
+// document.onmousemove = mouseMove
+
+// function checkKey(e) {
+
+//     e = e || window.event;
+//     console.log(e.keyCode)
+//     if (e.keyCode == '87') {
+//         camera.position.z -= 0.1
+//         console.log("up arrow")
+//     }
+//     else if (e.keyCode == '83') {
+//         camera.position.z += 0.1
+//         console.log("down arrow")
+//     }
+//     else if (e.keyCode == '65') {
+//        camera.position.x -= 0.1
+//        console.log("left arrow")
+//     }
+//     else if (e.keyCode == '68') {
+//       camera.position.x += 0.1
+//        console.log("right arrow")
+//     }
+
+// }
+
+// function mouseMove(e) {
+//   console.log(e)
+// }
 
 //Lighting
 const spotLight = new THREE.SpotLight(0xffeacc)
@@ -75,7 +109,7 @@ Array(400).fill().forEach(addStar)
 
 const moon = new THREE.Mesh(
   new THREE.SphereGeometry(3, 32, 32),
-  new THREE.MeshStandardMaterial({
+  new THREE.MeshToonMaterial({
     map: moonTexture,
     normalMap: normalTexture
   })
@@ -112,7 +146,6 @@ loader.load(
 	}
 )
 window.camera = camera
-window.controls = controls
 // function moveCamera() {
 //   const t = document.body.getBoundingClientRect().top
 //   moon.rotation.x += 0.05
@@ -138,7 +171,7 @@ function animate(){
   moon.rotation.y += 0.0002
   moon.rotation.z += 0.0002
 
-  controls.update()
+  // controls.update(0.1)
 
   renderer.render(scene, camera)
 }

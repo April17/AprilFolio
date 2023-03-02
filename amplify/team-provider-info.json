@@ -1,15 +1,15 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-theejsroom-dev-232806-authRole",
-      "UnauthRoleArn": "arn:aws:iam::456082219467:role/amplify-theejsroom-dev-232806-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::456082219467:role/amplify-theejsroom-dev-232806-authRole",
+      "AuthRoleName": "amplify-threejstestproject-dev-235411-authRole",
+      "UnauthRoleArn": "arn:aws:iam::456082219467:role/amplify-threejstestproject-dev-235411-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::456082219467:role/amplify-threejstestproject-dev-235411-authRole",
       "Region": "us-east-2",
-      "DeploymentBucketName": "amplify-theejsroom-dev-232806-deployment",
-      "UnauthRoleName": "amplify-theejsroom-dev-232806-unauthRole",
-      "StackName": "amplify-theejsroom-dev-232806",
-      "StackId": "arn:aws:cloudformation:us-east-2:456082219467:stack/amplify-theejsroom-dev-232806/3b234e70-b7fa-11ed-8bdb-061d84117c3c",
-      "AmplifyAppId": "d2h9pwgphvkhx1"
+      "DeploymentBucketName": "amplify-threejstestproject-dev-235411-deployment",
+      "UnauthRoleName": "amplify-threejstestproject-dev-235411-unauthRole",
+      "StackName": "amplify-threejstestproject-dev-235411",
+      "StackId": "arn:aws:cloudformation:us-east-2:456082219467:stack/amplify-threejstestproject-dev-235411/dfd91c30-b7fd-11ed-9314-02ae972d5162",
+      "AmplifyAppId": "d32cc8drtwz7w1"
     },
     "categories": {
       "hosting": {
