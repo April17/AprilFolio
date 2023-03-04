@@ -7,7 +7,7 @@ canvas {
 main {
   width: 100vw;
   color: rgb(62, 62, 63);
-  z-index: -99; 
+  z-index: -1; 
   position: absolute;
   width: 100%;
   margin: 0px auto;
@@ -58,3 +58,21 @@ blockquote p {
 .left {
   grid-column: 6 / 12;
 }
+
+/* ::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000000;
+  border-radius: 10px 
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 10px
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(104, 104, 104); 
+} */

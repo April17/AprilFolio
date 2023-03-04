@@ -1,6 +1,7 @@
 import "./style.css"
 import * as THREE from 'three'
 import gsap from 'gsap'
+import { ScrollTrigger } from "gsap/all"
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { textureMap } from "./textureMap";
@@ -31,26 +32,109 @@ const renderer = new THREE.WebGLRenderer({
 
 renderer.setPixelRatio(window.devicePixelRatio)
 renderer.setSize(window.innerWidth, window.innerHeight)
-camera.position.set(-4.92, 30.17, -8.57)
-// controls.object.position.set(0.7928432993777849, 25.093997470840975, -3.5118393051407386)
-// controls.object.position.set(0.67, 5.04, -0.13)
-// controls.target.set(-115.53, 72.22, 74.89)
+camera.position.set(-5.679345192722458, 5.7662886968838905, -6.358959535036217)
+camera.lookAt(-3.85, 4.73, 3.57)
 renderer.render(scene, camera)
 
 
 //GSAP Camera controll
+gsap.registerPlugin(ScrollTrigger)
 const monitorPosition = new THREE.Vector3(-3.85, 4.73, 3.57)
+const frameSetOne = new THREE.Vector3(-8.83, 6.60, -1.42)
+const frameSetTwo = new THREE.Vector3(-8.61, 6.86, -0.30)
+const frameSetThree = new THREE.Vector3(9.67, 2.72, -1.03)
+const frameSetFour = new THREE.Vector3(2.08, 2.72, -1.03)
+const frameSetFive = new THREE.Vector3(-2.41, 6.70, -11.91)
+
 const chairPosition = new THREE.Vector3(-1.56, 4.67, 0.53)
-document.addEventListener('mousedown', e => {
-  gsap.to(camera.position, {
-    x: -1.56,
-    y: 4.67,
-    z: 0.53,
-    duration: 1.5,
-    onUpdate: function () {
-      camera.lookAt(monitorPosition)
-    }
-  })
+const positionTwo = new THREE.Vector3(-4.45, 6.46, -2.49)
+const positionThree = new THREE.Vector3(3.68, 6.46, -2.52)
+const positionFour = new THREE.Vector3(4.63, 3.11, -6.40)
+const positionFive = new THREE.Vector3(-0.11, 6.46, -6.32)
+
+gsap.to(camera.position, {
+  scrollTrigger: {
+    trigger: '#skills',
+    start: "top center",
+    toggleActions: "restart none none none",
+    scrub: true,
+    markers: true
+  },
+  x: -1.56,
+  y: 4.67,
+  z: 0.53,
+  duration: 1.5,
+  onUpdate: function () {
+    camera.lookAt(monitorPosition)
+  }
+})
+
+gsap.to(camera.position, {
+  scrollTrigger: {
+    trigger: '#experience',
+    start: "top center",
+    toggleActions: "restart none none none",
+    scrub: true,
+    markers: true
+  },
+  x: -4.45,
+  y: 6.46,
+  z: -2.49,
+  duration: 1.5,
+  onUpdate: function () {
+    camera.lookAt(frameSetTwo)
+  }
+})
+
+gsap.to(camera.position, {
+  scrollTrigger: {
+    trigger: '#projects',
+    start: "top center",
+    toggleActions: "restart none none none",
+    scrub: true,
+    markers: true
+  },
+  x: 3.68,
+  y: 6.46,
+  z: -2.52,
+  duration: 1.5,
+  onUpdate: function () {
+    camera.lookAt(frameSetThree)
+  }
+})
+
+gsap.to(camera.position, {
+  scrollTrigger: {
+    trigger: '#education',
+    start: "top center",
+    toggleActions: "restart none none none",
+    scrub: true,
+    markers: true
+  },
+  x: 4.63,
+  y: 3.11,
+  z: -6.40,
+  duration: 1.5,
+  onUpdate: function () {
+    camera.lookAt(frameSetFour)
+  }
+})
+
+gsap.to(camera.position, {
+  scrollTrigger: {
+    trigger: '#contact',
+    start: "top center",
+    toggleActions: "restart none none none",
+    scrub: true,
+    markers: true
+  },
+  x: -0.11,
+  y: 6.46,
+  z: -6.32,
+  duration: 1.5,
+  onUpdate: function () {
+    camera.lookAt(frameSetFive)
+  }
 })
 
 
@@ -107,7 +191,6 @@ loader.load(
     let room = gltf.scene
     room.traverse( function ( child ) {
       if(child.isMesh) {
-        // console.log(textureMap[child.material.name])
         const textureObj = textureMap[child.material.name]
         if(textureObj.color){
           child.material = new THREE.MeshToonMaterial({color: textureObj.color})
@@ -143,7 +226,7 @@ window.camera = camera
 // document.body.onscroll = moveCamera
 // moveCamera();
 
-
+// animate
 function animate(){
   requestAnimationFrame(animate)
 
@@ -151,7 +234,6 @@ function animate(){
   moon.rotation.y += 0.0002
   moon.rotation.z += 0.0002
 
-  // firstPersonControls.update(1.0)
   // controls.update()
   renderer.render(scene, camera)
 }
