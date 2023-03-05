@@ -7,14 +7,28 @@ canvas {
 main {
   width: 100vw;
   color: rgb(62, 62, 63);
-  z-index: -1; 
+  z-index: 1; 
   position: absolute;
   width: 100%;
   margin: 0px auto;
   padding: 120px 0px;
-
+  left: 0px;
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
+  grid-template-columns: repeat(13, 1fr);
+}
+
+section {
+  height: 100vh;
+  padding: 1rem;
+  background: var(--dark-bg);
+  font-size: 1.25rem;
+  line-height: 1.5;
+  margin-bottom: var(--spacing);
+}
+
+.trans {
+  /* background-color: black; */
+  grid-column: 1 / 14;
 }
 
 h1, h2, h3, blockquote {
@@ -28,15 +42,6 @@ header {
   grid-column: 2 / span 5;
   font-size: 2.5rem;
   padding: 2rem;
-  margin-bottom: var(--spacing);
-}
-
-section {
-  grid-column: 2 / 8;
-  padding: 1rem;
-  background: var(--dark-bg);
-  font-size: 1.25rem;
-  line-height: 1.5;
   margin-bottom: var(--spacing);
 }
 
@@ -56,7 +61,15 @@ blockquote p {
 }
 
 .left {
-  grid-column: 6 / 12;
+  grid-column: 8 / 13;
+}
+
+.right {
+  grid-column: 2 / 7;
+}
+
+.full {
+  grid-column: 2 / 10;
 }
 
 /* ::-webkit-scrollbar {

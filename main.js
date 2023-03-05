@@ -1,7 +1,6 @@
 import "./style.css"
 import * as THREE from 'three'
-import gsap from 'gsap'
-import { ScrollTrigger } from "gsap/all"
+import { gsap, ScrollTrigger } from "gsap/all";
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { textureMap } from "./textureMap";
@@ -33,16 +32,17 @@ const renderer = new THREE.WebGLRenderer({
 renderer.setPixelRatio(window.devicePixelRatio)
 renderer.setSize(window.innerWidth, window.innerHeight)
 camera.position.set(-5.679345192722458, 5.7662886968838905, -6.358959535036217)
-camera.lookAt(-3.85, 4.73, 3.57)
+// camera.lookAt(-3.85, 4.73, 3.57)
 renderer.render(scene, camera)
 
 
 //GSAP Camera controll
 gsap.registerPlugin(ScrollTrigger)
+gsap.defaults({ease: "none", duration: 2})
 const monitorPosition = new THREE.Vector3(-3.85, 4.73, 3.57)
 const frameSetOne = new THREE.Vector3(-8.83, 6.60, -1.42)
 const frameSetTwo = new THREE.Vector3(-8.61, 6.86, -0.30)
-const frameSetThree = new THREE.Vector3(9.67, 2.72, -1.03)
+const frameSetThree = new THREE.Vector3(5.67, 4.72, -1.03)
 const frameSetFour = new THREE.Vector3(2.08, 2.72, -1.03)
 const frameSetFive = new THREE.Vector3(-2.41, 6.70, -11.91)
 
@@ -52,11 +52,24 @@ const positionThree = new THREE.Vector3(3.68, 6.46, -2.52)
 const positionFour = new THREE.Vector3(4.63, 3.11, -6.40)
 const positionFive = new THREE.Vector3(-0.11, 6.46, -6.32)
 
-gsap.to(camera.position, {
+const tl = gsap.timeline()
+
+tl.to(camera.position, {
+  scrollTrigger: {
+    trigger: '#intro',
+    start: "top 95%",
+    end: "top 100px",
+    toggleActions: "play none reverse none",
+    scrub: true,
+    markers: true
+  }
+})
+.to(camera.position, {
   scrollTrigger: {
     trigger: '#skills',
-    start: "top center",
-    toggleActions: "restart none none none",
+    start: "top 95%",
+    end: "top 100px",
+    toggleActions: "play none reverse none",
     scrub: true,
     markers: true
   },
@@ -68,12 +81,23 @@ gsap.to(camera.position, {
     camera.lookAt(monitorPosition)
   }
 })
-
-gsap.to(camera.position, {
+.to(camera.rotation, {
+  scrollTrigger: {
+    trigger: '#trans1',
+    start: "top 95%",
+    end: "top 100px",
+    toggleActions: "play none reverse none",
+    scrub: true,
+    markers: true
+  },
+  duration: 1.5
+})
+.to(camera.position, {
   scrollTrigger: {
     trigger: '#experience',
-    start: "top center",
-    toggleActions: "restart none none none",
+    start: "top 95%",
+    end: "top 100px",
+    toggleActions: "play none reverse none",
     scrub: true,
     markers: true
   },
@@ -83,31 +107,56 @@ gsap.to(camera.position, {
   duration: 1.5,
   onUpdate: function () {
     camera.lookAt(frameSetTwo)
+  },
+  onEnter: function () {
+    camera.position.set(chairPosition)
   }
 })
-
-gsap.to(camera.position, {
+.to(camera.rotation, {
   scrollTrigger: {
-    trigger: '#projects',
-    start: "top center",
-    toggleActions: "restart none none none",
+    trigger: '#trans2',
+    start: "top 95%",
+    end: "top 100px",
+    toggleActions: "play none reverse none",
     scrub: true,
     markers: true
   },
-  x: 3.68,
+  duration: 1.5
+})
+.to(camera.position, {
+  scrollTrigger: {
+    trigger: '#projects',
+    start: "top 95%",
+    end: "top 100px",
+    toggleActions: "play none reverse none",
+    scrub: true,
+    markers: true
+  },
+  x: 2.68,
   y: 6.46,
-  z: -2.52,
+  z: -3.52,
   duration: 1.5,
   onUpdate: function () {
     camera.lookAt(frameSetThree)
   }
 })
-
-gsap.to(camera.position, {
+.to(camera.rotation, {
+  scrollTrigger: {
+    trigger: '#trans3',
+    start: "top 95%",
+    end: "top 100px",
+    toggleActions: "play none reverse none",
+    scrub: true,
+    markers: true
+  },
+  duration: 1.5
+})
+.to(camera.position, {
   scrollTrigger: {
     trigger: '#education',
-    start: "top center",
-    toggleActions: "restart none none none",
+    start: "top 95%",
+    end: "top 100px",
+    toggleActions: "play none reverse none",
     scrub: true,
     markers: true
   },
@@ -119,12 +168,23 @@ gsap.to(camera.position, {
     camera.lookAt(frameSetFour)
   }
 })
-
-gsap.to(camera.position, {
+.to(camera.rotation, {
+  scrollTrigger: {
+    trigger: '#trans4',
+    start: "top 95%",
+    end: "top 100px",
+    toggleActions: "play none reverse none",
+    scrub: true,
+    markers: true
+  },
+  duration: 1.5
+})
+.to(camera.position, {
   scrollTrigger: {
     trigger: '#contact',
-    start: "top center",
-    toggleActions: "restart none none none",
+    start: "top 95%",
+    end: "top 100px",
+    toggleActions: "play none reverse none",
     scrub: true,
     markers: true
   },
