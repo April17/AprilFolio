@@ -23,7 +23,7 @@ export const textureMap =
         texture: ""
     },
     'banner': {
-        color: 0xf90308,
+        color: 0x5e380f,
         texture: ""
     },
     'banner.001': {
@@ -375,6 +375,10 @@ export const textureMap =
         texture: ""
     },
     'walls.001': {
+        color: 0x2c2b2a,
+        texture: ""
+    },
+    'obey_the_god_diffuse': {
         color: 0x2c2b2a,
         texture: ""
     }

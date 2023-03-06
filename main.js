@@ -6,10 +6,32 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { textureMap } from "./textureMap";
 
 //Textures
-const spaceTexture = new THREE.TextureLoader().load('space-background.jpg')
-const fearTheDark = new THREE.TextureLoader().load('./basement_home_office_badeskchallenge/textures/fear_the_dark_diffuse.png')
-fearTheDark.flipY = false
-const picTexture = new THREE.TextureLoader().load('pic.jpg')
+const cognizantLogo = new THREE.TextureLoader().load('Cognizant.jpg')
+const infosysLogo = new THREE.TextureLoader().load('Infosys.png')
+const pokeball = new THREE.TextureLoader().load('pokeball.png')
+const vite = new THREE.TextureLoader().load('vite.svg')
+const canvas = new THREE.TextureLoader().load('basement_home_office_badeskchallenge/textures/canvas_diffuse.jpeg')
+const pic = new THREE.TextureLoader().load('basement_home_office_badeskchallenge/textures/fear_the_dark.001_diffuse.jpeg')
+const pic2 = new THREE.TextureLoader().load('basement_home_office_badeskchallenge/textures/fear_the_dark.002_diffuse.jpeg')
+const paper = new THREE.TextureLoader().load('basement_home_office_badeskchallenge/textures/paper_diffuse.jpeg')
+const paper2 = new THREE.TextureLoader().load('basement_home_office_badeskchallenge/textures/paper.001_diffuse.jpeg')
+const paper3 = new THREE.TextureLoader().load('basement_home_office_badeskchallenge/textures/paper.002_diffuse.jpeg')
+const paper4 = new THREE.TextureLoader().load('basement_home_office_badeskchallenge/textures/paper.003_diffuse.jpeg')
+const paper5 = new THREE.TextureLoader().load('basement_home_office_badeskchallenge/textures/paper.004_diffuse.jpeg')
+const paper6 = new THREE.TextureLoader().load('basement_home_office_badeskchallenge/textures/paper.005_diffuse.jpeg')
+const largePic = new THREE.TextureLoader().load('basement_home_office_badeskchallenge/textures/mad_max_fury_road_web_by_3ftdeep-d8qr5za_diffuse.png')
+const largePic2 = new THREE.TextureLoader().load('basement_home_office_badeskchallenge/textures/mad_max_fury_road_web_by_3ftdeep-d8qr5za.001_diffuse.png')
+
+pic.flipY = false
+pic2.flipY = false
+canvas.flipY = false
+paper2.flipY = false
+paper3.flipY = false
+paper4.flipY = false
+paper5.flipY = false
+paper6.flipY = false
+largePic.flipY = false
+largePic2.flipY = false
 const moonTexture = new THREE.TextureLoader().load('moon.jpg')
 const normalTexture = new THREE.TextureLoader().load('normal.jpg')
 
@@ -41,7 +63,7 @@ gsap.registerPlugin(ScrollTrigger)
 gsap.defaults({ease: "none", duration: 2})
 const monitorPosition = new THREE.Vector3(-3.85, 4.73, 3.57)
 const frameSetOne = new THREE.Vector3(-8.83, 6.60, -1.42)
-const frameSetTwo = new THREE.Vector3(-8.61, 6.86, -0.30)
+const frameSetTwo = new THREE.Vector3(-9.61, 6.86, -0.30)
 const frameSetThree = new THREE.Vector3(5.67, 4.72, -1.03)
 const frameSetFour = new THREE.Vector3(2.08, 2.72, -1.03)
 const frameSetFive = new THREE.Vector3(-2.41, 6.70, -11.91)
@@ -56,19 +78,35 @@ const tl = gsap.timeline()
 
 tl.to(camera.position, {
   scrollTrigger: {
-    trigger: '#intro',
-    start: "top 95%",
-    end: "top 100px",
+    trigger: '#loading',
+    start: "top bottom",
+    end: "top top",
     toggleActions: "play none reverse none",
     scrub: true,
-    markers: true
+    markers: true,
+    onUpdate: function () {
+      camera.lookAt(monitorPosition)
+    }
+  }
+})
+.to(camera.position, {
+  scrollTrigger: {
+    trigger: '#intro',
+    start: "top bottom",
+    end: "top top",
+    toggleActions: "play none reverse none",
+    scrub: true,
+    markers: true,
+    onUpdate: function () {
+      camera.lookAt(monitorPosition)
+    }
   }
 })
 .to(camera.position, {
   scrollTrigger: {
     trigger: '#skills',
-    start: "top 95%",
-    end: "top 100px",
+    start: "top bottom",
+    end: "top top",
     toggleActions: "play none reverse none",
     scrub: true,
     markers: true
@@ -84,8 +122,8 @@ tl.to(camera.position, {
 .to(camera.rotation, {
   scrollTrigger: {
     trigger: '#trans1',
-    start: "top 95%",
-    end: "top 100px",
+    start: "top bottom",
+    end: "top top",
     toggleActions: "play none reverse none",
     scrub: true,
     markers: true
@@ -95,8 +133,8 @@ tl.to(camera.position, {
 .to(camera.position, {
   scrollTrigger: {
     trigger: '#experience',
-    start: "top 95%",
-    end: "top 100px",
+    start: "top bottom",
+    end: "top top",
     toggleActions: "play none reverse none",
     scrub: true,
     markers: true
@@ -115,8 +153,8 @@ tl.to(camera.position, {
 .to(camera.rotation, {
   scrollTrigger: {
     trigger: '#trans2',
-    start: "top 95%",
-    end: "top 100px",
+    start: "top bottom",
+    end: "top top",
     toggleActions: "play none reverse none",
     scrub: true,
     markers: true
@@ -126,8 +164,8 @@ tl.to(camera.position, {
 .to(camera.position, {
   scrollTrigger: {
     trigger: '#projects',
-    start: "top 95%",
-    end: "top 100px",
+    start: "top bottom",
+    end: "top top",
     toggleActions: "play none reverse none",
     scrub: true,
     markers: true
@@ -143,8 +181,8 @@ tl.to(camera.position, {
 .to(camera.rotation, {
   scrollTrigger: {
     trigger: '#trans3',
-    start: "top 95%",
-    end: "top 100px",
+    start: "top bottom",
+    end: "top top",
     toggleActions: "play none reverse none",
     scrub: true,
     markers: true
@@ -154,8 +192,8 @@ tl.to(camera.position, {
 .to(camera.position, {
   scrollTrigger: {
     trigger: '#education',
-    start: "top 95%",
-    end: "top 100px",
+    start: "top bottom",
+    end: "top top",
     toggleActions: "play none reverse none",
     scrub: true,
     markers: true
@@ -171,8 +209,8 @@ tl.to(camera.position, {
 .to(camera.rotation, {
   scrollTrigger: {
     trigger: '#trans4',
-    start: "top 95%",
-    end: "top 100px",
+    start: "top bottom",
+    end: "top top",
     toggleActions: "play none reverse none",
     scrub: true,
     markers: true
@@ -182,8 +220,8 @@ tl.to(camera.position, {
 .to(camera.position, {
   scrollTrigger: {
     trigger: '#contact',
-    start: "top 95%",
-    end: "top 100px",
+    start: "top bottom",
+    end: "top top",
     toggleActions: "play none reverse none",
     scrub: true,
     markers: true
@@ -213,7 +251,8 @@ pointLight.position.set(8.80, 6.42, -3.67)
 
 const ambientLight = new THREE.AmbientLight(0xffeacc)
 
-scene.add(pointLight, ambientLight, spotLight, lampLight)
+// scene.add(pointLight, ambientLight, spotLight, lampLight)
+scene.add(ambientLight)
 
 
 //3D Objects
@@ -241,7 +280,7 @@ const moon = new THREE.Mesh(
 
 scene.add(moon)
 
-moon.position.set(128.70, 73.00, 59.38)
+moon.position.set(69.55, 38.58, 62.37)
 
 const loader = new GLTFLoader();
 
@@ -252,9 +291,36 @@ loader.load(
     room.traverse( function ( child ) {
       if(child.isMesh) {
         const textureObj = textureMap[child.material.name]
-        if(textureObj.color){
+        if(child.material.name === "fear_the_dark"){
+          child.material = new THREE.MeshToonMaterial({map: cognizantLogo})
+        } else if (child.material.name === "obey_the_god"){
+          child.material = new THREE.MeshToonMaterial({map: infosysLogo})
+        } else if (child.material.name === "fear_the_dark.001"){
+          child.material = new THREE.MeshToonMaterial({map: pokeball})
+        } else if (child.material.name === "fear_the_dark.002"){
+          child.material = new THREE.MeshToonMaterial({map: pic2})
+        } else if (child.material.name === "paper"){
+          child.material = new THREE.MeshStandardMaterial({map: paper})
+        } else if (child.material.name === "paper.001"){
+          child.material = new THREE.MeshStandardMaterial({map: paper2})
+        } else if (child.material.name === "paper.002"){
+          child.material = new THREE.MeshStandardMaterial({map: paper3})
+        } else if (child.material.name === "paper.003"){
+          child.material = new THREE.MeshStandardMaterial({map: paper4})
+        } else if (child.material.name === "paper.004"){
+          child.material = new THREE.MeshStandardMaterial({map: paper5})
+        } else if (child.material.name === "paper.005"){
+          child.material = new THREE.MeshStandardMaterial({map: paper6})
+        } else if (child.material.name === "mad_max_fury_road_web_by_3ftdeep-d8qr5za"){
+          child.material = new THREE.MeshToonMaterial({map: largePic})
+        } else if (child.material.name === "mad_max_fury_road_web_by_3ftdeep-d8qr5za.001"){
+          child.material = new THREE.MeshToonMaterial({map: largePic2})
+        } else if (child.material.name === "canvas"){
+          child.material = new THREE.MeshToonMaterial({map: canvas})
+        } else if (textureObj.color) {
           child.material = new THREE.MeshToonMaterial({color: textureObj.color})
         }
+
       }
     })
     room.scale.set(4,4,4)
@@ -269,24 +335,7 @@ loader.load(
 	}
 )
 window.camera = camera
-// function moveCamera() {
-//   const t = document.body.getBoundingClientRect().top
-//   moon.rotation.x += 0.05
-//   moon.rotation.y += 0.075
-//   moon.rotation.z += 0.05
 
-//   pic.rotation.y += 0.01
-//   pic.rotation.z += 0.01
-
-//   camera.position.z = t * -0.02;
-//   camera.position.x = t * -0.002;
-//   camera.rotation.y = t * -0.1;
-
-// }
-// document.body.onscroll = moveCamera
-// moveCamera();
-
-// animate
 function animate(){
   requestAnimationFrame(animate)
 
