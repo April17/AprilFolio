@@ -38,6 +38,7 @@ img {
 
 .trans {
   /* background-color: black; */
+  background-color: rgba(8, 8, 8, 0.794) !important;
   grid-column: 1 / 14;
 }
 

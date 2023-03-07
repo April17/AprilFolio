@@ -9,7 +9,9 @@ import { textureMap } from "./textureMap";
 const cognizantLogo = new THREE.TextureLoader().load('Cognizant.jpg')
 const infosysLogo = new THREE.TextureLoader().load('Infosys.png')
 const pokeball = new THREE.TextureLoader().load('pokeball.png')
-const vite = new THREE.TextureLoader().load('vite.svg')
+const moonTexture = new THREE.TextureLoader().load('moon.jpg')
+const normalTexture = new THREE.TextureLoader().load('normal.jpg')
+const hero = new THREE.TextureLoader().load('Hero1.gif')
 const canvas = new THREE.TextureLoader().load('basement_home_office_badeskchallenge/textures/canvas_diffuse.jpeg')
 const pic = new THREE.TextureLoader().load('basement_home_office_badeskchallenge/textures/fear_the_dark.001_diffuse.jpeg')
 const pic2 = new THREE.TextureLoader().load('basement_home_office_badeskchallenge/textures/fear_the_dark.002_diffuse.jpeg')
@@ -17,8 +19,8 @@ const paper = new THREE.TextureLoader().load('basement_home_office_badeskchallen
 const paper2 = new THREE.TextureLoader().load('basement_home_office_badeskchallenge/textures/paper.001_diffuse.jpeg')
 const paper3 = new THREE.TextureLoader().load('basement_home_office_badeskchallenge/textures/paper.002_diffuse.jpeg')
 const paper4 = new THREE.TextureLoader().load('basement_home_office_badeskchallenge/textures/paper.003_diffuse.jpeg')
-const paper5 = new THREE.TextureLoader().load('basement_home_office_badeskchallenge/textures/paper.004_diffuse.jpeg')
-const paper6 = new THREE.TextureLoader().load('basement_home_office_badeskchallenge/textures/paper.005_diffuse.jpeg')
+const paper5 = new THREE.TextureLoader().load('Stony_Brook_University.png')
+const paper6 = new THREE.TextureLoader().load('Flatiron.png')
 const largePic = new THREE.TextureLoader().load('basement_home_office_badeskchallenge/textures/mad_max_fury_road_web_by_3ftdeep-d8qr5za_diffuse.png')
 const largePic2 = new THREE.TextureLoader().load('basement_home_office_badeskchallenge/textures/mad_max_fury_road_web_by_3ftdeep-d8qr5za.001_diffuse.png')
 
@@ -28,13 +30,8 @@ canvas.flipY = false
 paper2.flipY = false
 paper3.flipY = false
 paper4.flipY = false
-paper5.flipY = false
-paper6.flipY = false
 largePic.flipY = false
 largePic2.flipY = false
-const moonTexture = new THREE.TextureLoader().load('moon.jpg')
-const normalTexture = new THREE.TextureLoader().load('normal.jpg')
-
 
 
 //Camera and Scene
@@ -58,7 +55,7 @@ camera.position.set(-5.679345192722458, 5.7662886968838905, -6.358959535036217)
 renderer.render(scene, camera)
 
 
-//GSAP Camera controll
+//GSAP Camera control
 gsap.registerPlugin(ScrollTrigger)
 gsap.defaults({ease: "none", duration: 2})
 const monitorPosition = new THREE.Vector3(-3.85, 4.73, 3.57)
@@ -251,8 +248,8 @@ pointLight.position.set(8.80, 6.42, -3.67)
 
 const ambientLight = new THREE.AmbientLight(0xffeacc)
 
-// scene.add(pointLight, ambientLight, spotLight, lampLight)
-scene.add(ambientLight)
+scene.add(ambientLight, spotLight)
+// scene.add(ambientLight)
 
 
 //3D Objects
@@ -298,7 +295,7 @@ loader.load(
         } else if (child.material.name === "fear_the_dark.001"){
           child.material = new THREE.MeshToonMaterial({map: pokeball})
         } else if (child.material.name === "fear_the_dark.002"){
-          child.material = new THREE.MeshToonMaterial({map: pic2})
+          child.material = new THREE.MeshToonMaterial({map: hero})
         } else if (child.material.name === "paper"){
           child.material = new THREE.MeshStandardMaterial({map: paper})
         } else if (child.material.name === "paper.001"){
@@ -312,7 +309,7 @@ loader.load(
         } else if (child.material.name === "paper.005"){
           child.material = new THREE.MeshStandardMaterial({map: paper6})
         } else if (child.material.name === "mad_max_fury_road_web_by_3ftdeep-d8qr5za"){
-          child.material = new THREE.MeshToonMaterial({map: largePic})
+          child.material = new THREE.MeshToonMaterial({map: hero})
         } else if (child.material.name === "mad_max_fury_road_web_by_3ftdeep-d8qr5za.001"){
           child.material = new THREE.MeshToonMaterial({map: largePic2})
         } else if (child.material.name === "canvas"){
