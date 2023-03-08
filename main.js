@@ -36,7 +36,6 @@ largePic2.flipY = false
 
 //Camera and Scene
 const scene  = new THREE.Scene()
-// scene.background = spaceTexture
 
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
 
@@ -44,6 +43,8 @@ const renderer = new THREE.WebGLRenderer({
   canvas: document.querySelector('#bg'),
   antialias: true 
 })
+renderer.shadowMap.enabled = true
+renderer.shadowMap.type = THREE.PCFSoftShadowMap
 
 // const controls = new OrbitControls(camera, renderer.domElement)
 
@@ -103,7 +104,6 @@ tl.to('#loading', {
   z: 0.53,
   duration: 1.5,
   onUpdate: function () {
-    console.log(camera.position)
     camera.lookAt(monitorPosition)
   }
 })
@@ -219,21 +219,31 @@ tl.to('#loading', {
 
 
 //Lighting
-const spotLight = new THREE.SpotLight(0xffeacc)
-spotLight.position.set(0.56,10.51,-2.37)
+
+const spotLight = new THREE.SpotLight(0xffeacc, 1)
+spotLight.position.set(0.56,9.51,-2.37)
+spotLight.castShadow = true
 const spotLightTarget = new THREE.Object3D()
 spotLightTarget.position.set(0.21, -0.23, -1.44)
 
-const lampLight = new THREE.SpotLight(0xffeacc)
-lampLight.position.set(0.50,5.50,5.52)
+const directLight = new THREE.DirectionalLight(0xffffff, 0.5)
+directLight.position.set(43.16, 33.71, 16.27)
+directLight.castShadow = true
 
-const pointLight = new THREE.PointLight(0xffeacc)
+
+const lampLight = new THREE.SpotLight(0xffeacc, 0.5)
+lampLight.position.set(0.50,5.50,5.52)
+lampLight.castShadow = true
+
+const pointLight = new THREE.PointLight(0xffeacc, 0.5, 100, 10)
+pointLight.castShadow = true
 pointLight.position.set(8.80, 6.42, -3.67)
 
-const ambientLight = new THREE.AmbientLight(0xffeacc)
+const ambientLight = new THREE.AmbientLight(0xffeacc, 0.5)
 
-scene.add(ambientLight, spotLight)
-// scene.add(ambientLight)
+
+scene.add(spotLight, directLight, lampLight, pointLight, ambientLight)
+// scene.add(directLightHelper)
 
 
 //3D Objects
@@ -271,6 +281,8 @@ loader.load(
     let room = gltf.scene
     room.traverse( function ( child ) {
       if(child.isMesh) {
+        child.receiveShadow = true
+        child.castShadow = true
         const textureObj = textureMap[child.material.name]
         if(child.material.name === "fear_the_dark"){
           child.material = new THREE.MeshToonMaterial({map: cognizantLogo})
@@ -281,17 +293,17 @@ loader.load(
         } else if (child.material.name === "fear_the_dark.002"){
           child.material = new THREE.MeshToonMaterial({map: hero})
         } else if (child.material.name === "paper"){
-          child.material = new THREE.MeshStandardMaterial({map: paper})
+          child.material = new THREE.MeshToonMaterial({map: paper})
         } else if (child.material.name === "paper.001"){
-          child.material = new THREE.MeshStandardMaterial({map: paper2})
+          child.material = new THREE.MeshToonMaterial({map: paper2})
         } else if (child.material.name === "paper.002"){
-          child.material = new THREE.MeshStandardMaterial({map: paper3})
+          child.material = new THREE.MeshToonMaterial({map: paper3})
         } else if (child.material.name === "paper.003"){
-          child.material = new THREE.MeshStandardMaterial({map: paper4})
+          child.material = new THREE.MeshToonMaterial({map: paper4})
         } else if (child.material.name === "paper.004"){
-          child.material = new THREE.MeshStandardMaterial({map: paper5})
+          child.material = new THREE.MeshToonMaterial({map: paper5})
         } else if (child.material.name === "paper.005"){
-          child.material = new THREE.MeshStandardMaterial({map: paper6})
+          child.material = new THREE.MeshToonMaterial({map: paper6})
         } else if (child.material.name === "mad_max_fury_road_web_by_3ftdeep-d8qr5za"){
           child.material = new THREE.MeshToonMaterial({map: hero})
         } else if (child.material.name === "mad_max_fury_road_web_by_3ftdeep-d8qr5za.001"){
@@ -301,7 +313,6 @@ loader.load(
         } else if (textureObj.color) {
           child.material = new THREE.MeshToonMaterial({color: textureObj.color})
         }
-
       }
     })
     room.scale.set(4,4,4)
