@@ -25,8 +25,6 @@ section {
   font-size: 1.25rem;
   line-height: 1.5;
   margin-bottom: var(--spacing);
-  background-color: rgba(255, 255, 255, 0.15) !important;
-  backdrop-filter: blur(5px) !important;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
 }
@@ -34,12 +32,6 @@ section {
 img {
   height: 20vh;
   width: auto;
-}
-
-.trans {
-  /* background-color: black; */
-  background-color: rgba(8, 8, 8, 0.794) !important;
-  grid-column: 1 / 14;
 }
 
 h1, h2, h3, blockquote {
@@ -95,6 +87,10 @@ blockquote p {
   grid-column: 1 / 7;
 }
 
+.round-radius{
+  border-radius: 30px;
+}
+
 .full {
   grid-column: 1 / 14;
 }
@@ -108,28 +104,34 @@ div {
   justify-items: start;
   align-content: center;
 }
+#loading{
+  background-color: rgb(0, 0, 0);
+}
+.trans {
+  grid-column: 1 / 14;
+  background: transparent;
+}
 
 .transparent {
-  border: 0px !important;
-  box-shadow: none !important;
-  background: transparent !important;
+  border: 0px;
+  box-shadow: none;
 }
 
 .frostglass {
-  background-color: rgba(255, 255, 255, 0.15) !important;
-  backdrop-filter: blur(5px) !important;
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(5px);
 }
 
 .frostglass-dark {
-  background-color: rgba(8, 8, 8, 0.794) !important;
-  backdrop-filter: blur(5px) !important;
+  background-color: rgba(8, 8, 8, 0.794);
+  backdrop-filter: blur(5px);
 }
 
 .no-margin-bot{
   margin-bottom: 0;
 }
 
-/* ::-webkit-scrollbar {
+::-webkit-scrollbar {
   width: 8px;
 }
 
@@ -145,4 +147,4 @@ div {
 
 ::-webkit-scrollbar-thumb:hover {
   background: rgb(104, 104, 104); 
-} */
+}

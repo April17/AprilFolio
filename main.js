@@ -59,41 +59,31 @@ renderer.render(scene, camera)
 gsap.registerPlugin(ScrollTrigger)
 gsap.defaults({ease: "none", duration: 2})
 const monitorPosition = new THREE.Vector3(-3.85, 4.73, 3.57)
-const frameSetOne = new THREE.Vector3(-8.83, 6.60, -1.42)
 const frameSetTwo = new THREE.Vector3(-9.61, 6.86, -0.30)
 const frameSetThree = new THREE.Vector3(5.67, 4.72, -1.03)
 const frameSetFour = new THREE.Vector3(2.08, 2.72, -1.03)
 const frameSetFive = new THREE.Vector3(-2.41, 6.70, -11.91)
 
-const chairPosition = new THREE.Vector3(-1.56, 4.67, 0.53)
-const positionTwo = new THREE.Vector3(-4.45, 6.46, -2.49)
-const positionThree = new THREE.Vector3(3.68, 6.46, -2.52)
-const positionFour = new THREE.Vector3(4.63, 3.11, -6.40)
-const positionFive = new THREE.Vector3(-0.11, 6.46, -6.32)
-
 const tl = gsap.timeline()
 
-tl.to(camera.position, {
+tl.to('#loading', {
   scrollTrigger: {
     trigger: '#loading',
-    start: "top bottom",
-    end: "top top",
-    toggleActions: "play none reverse none",
+    toggleActions: "restart none reverse none",
     scrub: true,
-    markers: true,
+    pin: true,
+    pinSpacing: false,
     onUpdate: function () {
       camera.lookAt(monitorPosition)
     }
   }
 })
-.to(camera.position, {
+.to('#intro', {
   scrollTrigger: {
     trigger: '#intro',
-    start: "top bottom",
-    end: "top top",
-    toggleActions: "play none reverse none",
+    toggleActions: "restart none reverse none",
     scrub: true,
-    markers: true,
+    pin: true,
     onUpdate: function () {
       camera.lookAt(monitorPosition)
     }
@@ -101,40 +91,38 @@ tl.to(camera.position, {
 })
 .to(camera.position, {
   scrollTrigger: {
-    trigger: '#skills',
+    trigger: '#trans1',
     start: "top bottom",
-    end: "top top",
-    toggleActions: "play none reverse none",
+    toggleActions: "restart none reverse none",
     scrub: true,
-    markers: true
+    pin: true,
+    pinSpacing: false,
   },
   x: -1.56,
   y: 4.67,
   z: 0.53,
   duration: 1.5,
   onUpdate: function () {
+    console.log(camera.position)
     camera.lookAt(monitorPosition)
   }
 })
-.to(camera.rotation, {
+.to(camera.position, {
   scrollTrigger: {
-    trigger: '#trans1',
-    start: "top bottom",
-    end: "top top",
-    toggleActions: "play none reverse none",
+    trigger: '#skills',
+    toggleActions: "restart none reverse none",
     scrub: true,
-    markers: true
-  },
-  duration: 1.5
+    pin: true,
+  }
 })
 .to(camera.position, {
   scrollTrigger: {
-    trigger: '#experience',
+    trigger: '#trans2',
     start: "top bottom",
-    end: "top top",
-    toggleActions: "play none reverse none",
+    toggleActions: "restart none reverse none",
     scrub: true,
-    markers: true
+    pin: true,
+    pinSpacing: false,
   },
   x: -4.45,
   y: 6.46,
@@ -142,30 +130,24 @@ tl.to(camera.position, {
   duration: 1.5,
   onUpdate: function () {
     camera.lookAt(frameSetTwo)
-  },
-  onEnter: function () {
-    camera.position.set(chairPosition)
   }
-})
-.to(camera.rotation, {
-  scrollTrigger: {
-    trigger: '#trans2',
-    start: "top bottom",
-    end: "top top",
-    toggleActions: "play none reverse none",
-    scrub: true,
-    markers: true
-  },
-  duration: 1.5
 })
 .to(camera.position, {
   scrollTrigger: {
-    trigger: '#projects',
-    start: "top bottom",
-    end: "top top",
-    toggleActions: "play none reverse none",
+    trigger: '#experience',
+    toggleActions: "restart none reverse none",
     scrub: true,
-    markers: true
+    pin: true,
+  }
+})
+.to(camera.position, {
+  scrollTrigger: {
+    trigger: '#trans3',
+    start: "top bottom",
+    toggleActions: "restart none reverse none",
+    scrub: true,
+    pin: true,
+    pinSpacing: false,
   },
   x: 2.68,
   y: 6.46,
@@ -175,26 +157,23 @@ tl.to(camera.position, {
     camera.lookAt(frameSetThree)
   }
 })
-.to(camera.rotation, {
+.to(camera.position, {
   scrollTrigger: {
-    trigger: '#trans3',
-    start: "top bottom",
-    end: "top top",
-    toggleActions: "play none reverse none",
+    trigger: '#projects',
+    toggleActions: "restart none reverse none",
     scrub: true,
-    markers: true
-  },
-  duration: 1.5
+    pin: true,
+  }
 })
 .to(camera.position, {
   scrollTrigger: {
-    trigger: '#education',
+    trigger: '#trans4',
     start: "top bottom",
-    end: "top top",
-    toggleActions: "play none reverse none",
+    toggleActions: "restart none reverse none",
     scrub: true,
-    markers: true
-  },
+    pin: true,
+    pinSpacing: false,
+    },
   x: 4.63,
   y: 3.11,
   z: -6.40,
@@ -203,32 +182,37 @@ tl.to(camera.position, {
     camera.lookAt(frameSetFour)
   }
 })
-.to(camera.rotation, {
+.to(camera.position, {
   scrollTrigger: {
-    trigger: '#trans4',
-    start: "top bottom",
-    end: "top top",
-    toggleActions: "play none reverse none",
+    trigger: '#education',
+    toggleActions: "restart none reverse none",
     scrub: true,
-    markers: true
-  },
-  duration: 1.5
+    pin: true,
+  }
 })
 .to(camera.position, {
   scrollTrigger: {
-    trigger: '#contact',
+    trigger: '#trans5',
     start: "top bottom",
-    end: "top top",
-    toggleActions: "play none reverse none",
+    toggleActions: "restart none reverse none",
     scrub: true,
-    markers: true
-  },
+    pin: true,
+    pinSpacing: false,
+    },
   x: -0.11,
   y: 6.46,
   z: -6.32,
   duration: 1.5,
   onUpdate: function () {
     camera.lookAt(frameSetFive)
+  }
+})
+.to(camera.position, {
+  scrollTrigger: {
+    trigger: '#contact',
+    toggleActions: "restart none reverse none",
+    scrub: true,
+    pin: true,
   }
 })
 
