@@ -1,5 +1,3 @@
-const ROOT = './basement_home_office_badeskchallenge/textures/'
-
 export const textureMap =
 {
     '04_-_CoronaMtl': {
@@ -88,7 +86,7 @@ export const textureMap =
     },
     'fear_the_dark': {
         color: 0x3e3e3f,
-        texture: "./basement_home_office_badeskchallenge/textures/fear_the_dark_diffuse.png"
+        texture: ""
     },
     'fear_the_dark.001': {
         color: 0x3e3e3f,

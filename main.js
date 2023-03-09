@@ -13,24 +13,18 @@ const moonTexture = new THREE.TextureLoader().load('moon.jpg')
 const normalTexture = new THREE.TextureLoader().load('normal.jpg')
 const hero = new THREE.TextureLoader().load('Hero1.gif')
 const canvas = new THREE.TextureLoader().load('basement_home_office_badeskchallenge/textures/canvas_diffuse.jpeg')
-const pic = new THREE.TextureLoader().load('basement_home_office_badeskchallenge/textures/fear_the_dark.001_diffuse.jpeg')
-const pic2 = new THREE.TextureLoader().load('basement_home_office_badeskchallenge/textures/fear_the_dark.002_diffuse.jpeg')
 const paper = new THREE.TextureLoader().load('basement_home_office_badeskchallenge/textures/paper_diffuse.jpeg')
 const paper2 = new THREE.TextureLoader().load('basement_home_office_badeskchallenge/textures/paper.001_diffuse.jpeg')
 const paper3 = new THREE.TextureLoader().load('basement_home_office_badeskchallenge/textures/paper.002_diffuse.jpeg')
 const paper4 = new THREE.TextureLoader().load('basement_home_office_badeskchallenge/textures/paper.003_diffuse.jpeg')
 const paper5 = new THREE.TextureLoader().load('Stony_Brook_University.png')
 const paper6 = new THREE.TextureLoader().load('Flatiron.png')
-const largePic = new THREE.TextureLoader().load('basement_home_office_badeskchallenge/textures/mad_max_fury_road_web_by_3ftdeep-d8qr5za_diffuse.png')
 const largePic2 = new THREE.TextureLoader().load('basement_home_office_badeskchallenge/textures/mad_max_fury_road_web_by_3ftdeep-d8qr5za.001_diffuse.png')
 
-pic.flipY = false
-pic2.flipY = false
 canvas.flipY = false
 paper2.flipY = false
 paper3.flipY = false
 paper4.flipY = false
-largePic.flipY = false
 largePic2.flipY = false
 
 
@@ -52,8 +46,21 @@ renderer.shadowMap.type = THREE.PCFSoftShadowMap
 renderer.setPixelRatio(window.devicePixelRatio)
 renderer.setSize(window.innerWidth, window.innerHeight)
 camera.position.set(-5.679345192722458, 5.7662886968838905, -6.358959535036217)
-// camera.lookAt(-3.85, 4.73, 3.57)
 renderer.render(scene, camera)
+
+
+// mouse move camera
+const mouse = new THREE.Vector2();
+const target = new THREE.Vector2();
+const windowHalf = new THREE.Vector2( window.innerWidth / 2, window.innerHeight / 2 );
+document.addEventListener( 'mousemove', onMouseMove, false );
+function onMouseMove( event ) {
+	mouse.x = ( event.clientX + windowHalf.x );
+	mouse.y = ( event.clientY + windowHalf.x );
+  
+  // camera.rotation.x = 0.05 * ( ( 1 - mouse.y ) * 0.0002 - camera.rotation.x )
+  // camera.rotation.y = 0.05 * ( ( 1 - mouse.x ) * 0.0002 - camera.rotation.y )
+}
 
 
 //GSAP Camera control
@@ -220,7 +227,7 @@ tl.to('#loading', {
 
 //Lighting
 
-const spotLight = new THREE.SpotLight(0xffeacc, 1)
+const spotLight = new THREE.SpotLight(0xffeacc, 0.5)
 spotLight.position.set(0.56,9.51,-2.37)
 spotLight.castShadow = true
 const spotLightTarget = new THREE.Object3D()
@@ -327,15 +334,17 @@ loader.load(
 	}
 )
 window.camera = camera
-
+window.target = target
 function animate(){
-  requestAnimationFrame(animate)
+  
+
 
   moon.rotation.x += 0.0002
   moon.rotation.y += 0.0002
   moon.rotation.z += 0.0002
 
   // controls.update()
+  requestAnimationFrame(animate)
   renderer.render(scene, camera)
 }
 
