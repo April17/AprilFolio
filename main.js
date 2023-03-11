@@ -48,21 +48,6 @@ renderer.setSize(window.innerWidth, window.innerHeight)
 camera.position.set(-5.679345192722458, 5.7662886968838905, -6.358959535036217)
 renderer.render(scene, camera)
 
-
-// mouse move camera
-const mouse = new THREE.Vector2();
-const target = new THREE.Vector2();
-const windowHalf = new THREE.Vector2( window.innerWidth / 2, window.innerHeight / 2 );
-document.addEventListener( 'mousemove', onMouseMove, false );
-function onMouseMove( event ) {
-	mouse.x = ( event.clientX + windowHalf.x );
-	mouse.y = ( event.clientY + windowHalf.x );
-  
-  // camera.rotation.x = 0.05 * ( ( 1 - mouse.y ) * 0.0002 - camera.rotation.x )
-  // camera.rotation.y = 0.05 * ( ( 1 - mouse.x ) * 0.0002 - camera.rotation.y )
-}
-
-
 //GSAP Camera control
 gsap.registerPlugin(ScrollTrigger)
 gsap.defaults({ease: "none", duration: 2})
@@ -71,6 +56,8 @@ const frameSetTwo = new THREE.Vector3(-9.61, 6.86, -0.30)
 const frameSetThree = new THREE.Vector3(5.67, 4.72, -1.03)
 const frameSetFour = new THREE.Vector3(2.08, 2.72, -1.03)
 const frameSetFive = new THREE.Vector3(-2.41, 6.70, -11.91)
+
+
 
 const tl = gsap.timeline()
 
@@ -222,6 +209,19 @@ tl.to('#loading', {
     pin: true,
   }
 })
+
+// mouse move camera
+const mouse = new THREE.Vector2();
+const target = new THREE.Vector2();
+const windowHalf = new THREE.Vector2( window.innerWidth / 2, window.innerHeight / 2 );
+document.addEventListener( 'mousemove', onMouseMove, false );
+function onMouseMove( event ) {
+	mouse.x = ( event.clientX + windowHalf.x );
+	mouse.y = ( event.clientY + windowHalf.x );
+  
+  // camera.rotation.x = 0.05 * ( ( 1 - mouse.y ) * 0.0002 - camera.rotation.x )
+  // camera.rotation.y = 0.05 * ( ( 1 - mouse.x ) * 0.0002 - camera.rotation.y )
+}
 
 
 
