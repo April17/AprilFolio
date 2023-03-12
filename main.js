@@ -56,6 +56,8 @@ const frameSetTwo = new THREE.Vector3(-9.61, 6.86, -0.30)
 const frameSetThree = new THREE.Vector3(5.67, 4.72, -1.03)
 const frameSetFour = new THREE.Vector3(2.08, 2.72, -1.03)
 const frameSetFive = new THREE.Vector3(-2.41, 6.70, -11.91)
+let currentTargetY
+let currentSign
 
 
 
@@ -99,6 +101,8 @@ tl.to('#loading', {
   duration: 1.5,
   onUpdate: function () {
     camera.lookAt(monitorPosition)
+    currentTargetY = 8
+    currentSign = -1
   }
 })
 .to(camera.position, {
@@ -124,6 +128,8 @@ tl.to('#loading', {
   duration: 1.5,
   onUpdate: function () {
     camera.lookAt(frameSetTwo)
+    currentTargetY = 3.75
+    currentSign = -1
   }
 })
 .to(camera.position, {
@@ -149,6 +155,8 @@ tl.to('#loading', {
   duration: 1.5,
   onUpdate: function () {
     camera.lookAt(frameSetThree)
+    currentTargetY = -6
+    currentSign = 1
   }
 })
 .to(camera.position, {
@@ -174,6 +182,8 @@ tl.to('#loading', {
   duration: 1.5,
   onUpdate: function () {
     camera.lookAt(frameSetFour)
+    currentTargetY = 8
+    currentSign = -1
   }
 })
 .to(camera.position, {
@@ -199,6 +209,8 @@ tl.to('#loading', {
   duration: 1.5,
   onUpdate: function () {
     camera.lookAt(frameSetFive)
+    currentTargetY = 8
+    currentSign = -1
   }
 })
 .to(camera.position, {
@@ -215,14 +227,22 @@ const mouse = new THREE.Vector2();
 const target = new THREE.Vector2();
 const windowHalf = new THREE.Vector2( window.innerWidth / 2, window.innerHeight / 2 );
 document.addEventListener( 'mousemove', onMouseMove, false );
+
 function onMouseMove( event ) {
 	mouse.x = ( event.clientX + windowHalf.x );
 	mouse.y = ( event.clientY + windowHalf.x );
-  
-  // camera.rotation.x = 0.05 * ( ( 1 - mouse.y ) * 0.0002 - camera.rotation.x )
-  // camera.rotation.y = 0.05 * ( ( 1 - mouse.x ) * 0.0002 - camera.rotation.y )
+
+  // camera.rotation.x -= 0.05 * ( ( 1 - mouse.y ) * 0.002 + camera.rotation.x + currentTarget.x) 
+  camera.rotation.y = camera.rotation.y + currentSign * 0.05 * ( ( 1 - mouse.x ) * 0.002 + currentTargetY*camera.rotation.y) 
 }
 
+/*
+0.6455094666282195
+1.1634836772232213
+-0.77748273023473
+0.4423160150134419
+0.3900131824595764
+*/
 
 
 //Lighting
@@ -334,7 +354,7 @@ loader.load(
 	}
 )
 window.camera = camera
-window.target = target
+window.mouse = mouse
 function animate(){
   
 
