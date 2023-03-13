@@ -4,6 +4,10 @@ import { gsap, ScrollTrigger } from "gsap/all";
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { textureMap } from "./textureMap";
+import '@splidejs/splide/css';
+import Splide from '@splidejs/splide';
+
+
 
 //Textures
 const cognizantLogo = new THREE.TextureLoader().load('Cognizant.jpg')
@@ -111,7 +115,15 @@ tl.to('#loading', {
     toggleActions: "restart none reverse none",
     scrub: true,
     pin: true,
-  }
+  },
+  // x: -1.56,
+  // y: 4.67,
+  // z: 0.53,
+  // onUpdate: function () {
+  //   camera.lookAt(monitorPosition)
+  //   currentTargetY = 8
+  //   currentSign = -1
+  // }
 })
 .to(camera.position, {
   scrollTrigger: {
@@ -233,9 +245,10 @@ function onMouseMove( event ) {
 	mouse.y = ( event.clientY + windowHalf.x );
 
   // camera.rotation.x -= 0.05 * ( ( 1 - mouse.y ) * 0.002 + camera.rotation.x + currentTarget.x) 
-  camera.rotation.y = camera.rotation.y + currentSign * 0.05 * ( ( 1 - mouse.x ) * 0.002 + currentTargetY*camera.rotation.y) 
+  camera.rotation.y = camera.rotation.y + currentSign * 0.05 * ( ( 1 - mouse.x ) * 0.002 + currentTargetY * camera.rotation.y) 
 }
 
+new Splide( '.splide' ).mount();
 /*
 0.6455094666282195
 1.1634836772232213

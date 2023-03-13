@@ -12,7 +12,9 @@
     "vite": "^4.1.0"
   },
   "dependencies": {
+    "@splidejs/splide": "^4.1.4",
     "gsap": "^3.11.4",
+    "lite-youtube-embed": "^0.2.0",
     "lodash": "^4.17.21",
     "three": "^0.150.0"
   }

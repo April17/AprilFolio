@@ -112,6 +112,17 @@ div {
   background: transparent;
 }
 
+.large-image {
+  width: 100%;
+  height: auto;
+}
+.small-icon {
+  width: 4vw;
+  height: auto;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
 .transparent {
   border: 0px;
   box-shadow: none;
