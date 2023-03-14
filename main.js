@@ -2,10 +2,75 @@ import "./style.css"
 import * as THREE from 'three'
 import { gsap, ScrollTrigger } from "gsap/all";
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+import anime from 'animejs/lib/anime.es.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { textureMap } from "./textureMap";
 import '@splidejs/splide/css';
 import Splide from '@splidejs/splide';
+
+//Loading Page
+// const wrapper = document.getElementById("tiles");
+
+// let columns = 0,
+//     rows = 0,
+//     toggled = false;
+
+// const toggle = () => {
+//   toggled = !toggled;
+  
+//   document.body.classList.toggle("toggled");
+// }
+
+// const handleOnClick = index => {
+//   toggle();
+  
+//   anime({
+//     targets: ".tile",
+//     opacity: toggled ? 0 : 1,
+//     delay: anime.stagger(50, {
+//       grid: [columns, rows],
+//       from: index
+//     })
+//   });
+// }
+
+// const createTile = index => {
+//   const tile = document.createElement("div");
+  
+//   tile.classList.add("tile");
+  
+//   tile.style.opacity = toggled ? 0 : 1;
+  
+//   tile.onclick = e => handleOnClick(index);
+  
+//   return tile;
+// }
+
+// const createTiles = quantity => {
+//   Array.from(Array(quantity)).map((tile, index) => {
+//     wrapper.appendChild(createTile(index));
+//   });
+// }
+
+// const createGrid = () => {
+//   wrapper.innerHTML = "";
+  
+//   const size = document.getElementById("loading").clientWidth > 800 ? 100 : 50;
+  
+//   columns = Math.floor(document.getElementById("loading").clientWidth / size);
+//   rows = Math.floor(document.getElementById("loading").clientHeight / size);
+//   console.log(document.getElementById("loading").clientHeight)
+  
+//   wrapper.style.setProperty("--columns", columns);
+//   wrapper.style.setProperty("--rows", rows);
+  
+//   createTiles(columns * rows);
+  
+// }
+
+// createGrid();
+
+// window.onresize = () => createGrid();
 
 
 
@@ -234,6 +299,19 @@ tl.to('#loading', {
   }
 })
 
+// gsap js content control
+// gsap.to(".el", {
+//   y: -500,
+//   scrollTrigger: {
+//     trigger: "#skills",
+//     start: "top center",
+//     end: "top 100px",
+//     scrub: true,
+//     markers: true,
+//     id: "scrub"
+//   }
+// })
+
 // mouse move camera
 const mouse = new THREE.Vector2();
 const target = new THREE.Vector2();
@@ -248,15 +326,9 @@ function onMouseMove( event ) {
   camera.rotation.y = camera.rotation.y + currentSign * 0.05 * ( ( 1 - mouse.x ) * 0.002 + currentTargetY * camera.rotation.y) 
 }
 
-new Splide( '.splide' ).mount();
-/*
-0.6455094666282195
-1.1634836772232213
--0.77748273023473
-0.4423160150134419
-0.3900131824595764
-*/
-
+new Splide( '.splide',{
+  type   : 'loop'
+} ).mount();
 
 //Lighting
 

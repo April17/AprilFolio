@@ -2,12 +2,13 @@ canvas {
   top:0;
   left: 0;
   position: fixed;
+  z-index: -1;
 }
 
 main {
   width: 100vw;
   color: rgb(255, 255, 255);
-  z-index: 1; 
+  /* z-index: 2;  */
   position: absolute;
   width: 100%;
   margin: 0px auto;
@@ -61,6 +62,35 @@ header {
   align-items: center
 }
 
+.header-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#tiles {
+  height: calc(100vh - 1px);
+  width: calc(100vw - 1px);
+  position: relative;
+  z-index: 2;
+  
+  display: grid;
+  grid-template-columns: repeat(var(--columns), 1fr);
+  grid-template-rows: repeat(var(--rows), 1fr);
+}
+
+#title{
+  color: white;
+  font-family: "Rubik", sans-serif;
+  font-size: 4vw;
+  margin: 0px;
+  pointer-events: none;
+  transition: opacity 1200ms ease;
+  width: 50vw;
+  z-index: 3;
+}
+
 blockquote {
   margin: 0;
   padding: 0;
@@ -104,9 +134,60 @@ div {
   justify-items: start;
   align-content: center;
 }
-#loading{
-  background-color: rgb(0, 0, 0);
+
+:root{
+  --g1: rgb(36, 99, 144);
+  --g2: rgb(3, 178, 197);
+  --g3: rgb(82, 19, 99);
 }
+
+@keyframes background-pan {
+  from {
+    background-position: 0% center;
+  }
+  
+  to {
+    background-position: -200% center;
+  }
+}
+
+#loading {
+  animation: background-pan 10s linear infinite;
+  background: linear-gradient(
+    to right,
+    var(--g1),
+    var(--g2),
+    var(--g3),
+    var(--g2),
+    var(--g1)
+  );
+  background-size: 200%;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0px;
+  /* position: relative !important; */
+}
+
+#loading.toggled {
+  animation: none;
+}
+
+#loading.toggled > #title {
+  opacity: 0;
+}
+
+#loading.toggled > #icon {
+  opacity: 1;
+}
+
+#loading.toggled > #tiles > .tile:hover {
+  opacity: 0.1 !important;
+}
+
+.el{
+  position: relative;
+}
+
 .trans {
   grid-column: 1 / 14;
   background: transparent;
