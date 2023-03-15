@@ -9,68 +9,67 @@ import '@splidejs/splide/css';
 import Splide from '@splidejs/splide';
 
 //Loading Page
-// const wrapper = document.getElementById("tiles");
+const wrapper = document.getElementById("tiles");
 
-// let columns = 0,
-//     rows = 0,
-//     toggled = false;
+let columns = 0,
+    rows = 0,
+    toggled = false;
 
-// const toggle = () => {
-//   toggled = !toggled;
+const toggle = () => {
+  toggled = !toggled;
   
-//   document.body.classList.toggle("toggled");
-// }
+  document.body.classList.toggle("toggled");
+}
 
-// const handleOnClick = index => {
-//   toggle();
+const handleOnClick = index => {
+  toggle();
   
-//   anime({
-//     targets: ".tile",
-//     opacity: toggled ? 0 : 1,
-//     delay: anime.stagger(50, {
-//       grid: [columns, rows],
-//       from: index
-//     })
-//   });
-// }
+  anime({
+    targets: ".tile",
+    opacity: toggled ? 0 : 1,
+    delay: anime.stagger(50, {
+      grid: [columns, rows],
+      from: index
+    })
+  });
+}
 
-// const createTile = index => {
-//   const tile = document.createElement("div");
+const createTile = index => {
+  const tile = document.createElement("div");
   
-//   tile.classList.add("tile");
+  tile.classList.add("tile");
   
-//   tile.style.opacity = toggled ? 0 : 1;
+  tile.style.opacity = toggled ? 0 : 1;
   
-//   tile.onclick = e => handleOnClick(index);
+  tile.onclick = e => handleOnClick(index);
   
-//   return tile;
-// }
+  return tile;
+}
 
-// const createTiles = quantity => {
-//   Array.from(Array(quantity)).map((tile, index) => {
-//     wrapper.appendChild(createTile(index));
-//   });
-// }
+const createTiles = quantity => {
+  Array.from(Array(quantity)).map((tile, index) => {
+    wrapper.appendChild(createTile(index));
+  });
+}
 
-// const createGrid = () => {
-//   wrapper.innerHTML = "";
+const createGrid = () => {
+  wrapper.innerHTML = "";
   
-//   const size = document.getElementById("loading").clientWidth > 800 ? 100 : 50;
+  const size = document.getElementById("loading").clientWidth > 800 ? 100 : 50;
   
-//   columns = Math.floor(document.getElementById("loading").clientWidth / size);
-//   rows = Math.floor(document.getElementById("loading").clientHeight / size);
-//   console.log(document.getElementById("loading").clientHeight)
+  columns = Math.floor(document.getElementById("loading").clientWidth / size);
+  rows = Math.floor(document.getElementById("loading").clientHeight / size);
   
-//   wrapper.style.setProperty("--columns", columns);
-//   wrapper.style.setProperty("--rows", rows);
+  wrapper.style.setProperty("--columns", columns);
+  wrapper.style.setProperty("--rows", rows);
   
-//   createTiles(columns * rows);
+  createTiles(columns * rows);
   
-// }
+}
 
-// createGrid();
+createGrid();
 
-// window.onresize = () => createGrid();
+window.onresize = () => createGrid();
 
 
 
@@ -137,8 +136,6 @@ tl.to('#loading', {
     trigger: '#loading',
     toggleActions: "restart none reverse none",
     scrub: true,
-    pin: true,
-    pinSpacing: false,
     onUpdate: function () {
       camera.lookAt(monitorPosition)
     }
