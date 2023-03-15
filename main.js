@@ -135,21 +135,22 @@ tl.to('#loading', {
   scrollTrigger: {
     trigger: '#loading',
     toggleActions: "restart none reverse none",
-    scrub: true,
-    onUpdate: function () {
-      camera.lookAt(monitorPosition)
-    }
+    scrub: true
+  },
+  onUpdate: function () {
+    camera.lookAt(monitorPosition)
   }
 })
-.to('#intro', {
+.to('#nav', {
   scrollTrigger: {
     trigger: '#intro',
     toggleActions: "restart none reverse none",
     scrub: true,
-    pin: true,
-    onUpdate: function () {
-      camera.lookAt(monitorPosition)
-    }
+    pin: true
+  },
+  x: '5rem',
+  onUpdate: function () {
+    camera.lookAt(monitorPosition)
   }
 })
 .to(camera.position, {
@@ -178,14 +179,6 @@ tl.to('#loading', {
     scrub: true,
     pin: true,
   },
-  // x: -1.56,
-  // y: 4.67,
-  // z: 0.53,
-  // onUpdate: function () {
-  //   camera.lookAt(monitorPosition)
-  //   currentTargetY = 8
-  //   currentSign = -1
-  // }
 })
 .to(camera.position, {
   scrollTrigger: {

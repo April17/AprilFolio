@@ -26,12 +26,12 @@ canvas {
 }
 
 main {
-  margin-left: 5rem !important;
-  width: 100vw;
+  /* margin-left: 5rem !important; */
+  /* width: fit-content !important; */
+  overflow-x: hidden;
   color: rgb(255, 255, 255);
   z-index: 2; 
   position: absolute;
-  width: 100%;
   margin: 0px auto;
   padding: 0px 0px;
   left: 0px;
@@ -44,6 +44,7 @@ main {
   width: 5rem;
   height: 100vh;
   position: fixed;
+  left: -5rem;
   background-color: var(--bg-primary);
   z-index: 4;
   transition: width 200ms ease;
@@ -254,11 +255,11 @@ blockquote p {
 }
 
 .left {
-  grid-column: 8 / 14;
+  grid-column: 7 / 13;
 }
 
 .right {
-  grid-column: 1 / 7;
+  grid-column: 2 / 8;
 }
 
 .round-radius{
@@ -302,12 +303,15 @@ blockquote p {
     var(--g1)
   );
   background-size: 200%;
+  /* width: max-content; */
   height: 100vh;
   overflow: hidden;
   margin: 0px;
   padding: 0px;
   display: block;
-  position: relative
+  position: relative;
+  z-index: 100;
+  /* margin-left: -5rem !important; */
 }
 
 #loading.toggled {
@@ -369,6 +373,14 @@ blockquote p {
   width: 50vw;
   z-index: 100;
 }
+
+/* .margin-5rem-left {
+  margin-left: 5rem !important;
+}
+
+.pin-spacer {
+  margin: 0 !important;
+} */
 
 .el{
   position: relative;
