@@ -241,9 +241,10 @@ blockquote {
   padding: 0;
   grid-column: 1 / 14;
   margin-bottom: var(--spacing);
-  display: grid;
-  justify-content: center;
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 blockquote p {
@@ -255,7 +256,7 @@ blockquote p {
 }
 
 .left {
-  grid-column: 7 / 13;
+  grid-column: 8 / 14;
 }
 
 .right {
@@ -382,6 +383,12 @@ blockquote p {
   margin: 0 !important;
 } */
 
+.dev-stack-icons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 .el{
   position: relative;
 }
@@ -396,9 +403,9 @@ blockquote p {
   height: auto;
 }
 .small-icon {
-  width: 4vw;
+  width: 3vw;
   height: auto;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 5px;
 }
 

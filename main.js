@@ -123,7 +123,6 @@ const monitorPosition = new THREE.Vector3(-3.85, 4.73, 3.57)
 const frameSetTwo = new THREE.Vector3(-9.61, 6.86, -0.30)
 const frameSetThree = new THREE.Vector3(5.67, 4.72, -1.03)
 const frameSetFour = new THREE.Vector3(2.08, 2.72, -1.03)
-const frameSetFive = new THREE.Vector3(-2.41, 6.70, -11.91)
 let currentTargetY
 let currentSign
 
@@ -152,33 +151,6 @@ tl.to('#loading', {
   onUpdate: function () {
     camera.lookAt(monitorPosition)
   }
-})
-.to(camera.position, {
-  scrollTrigger: {
-    trigger: '#trans1',
-    start: "top bottom",
-    toggleActions: "restart none reverse none",
-    scrub: true,
-    pin: true,
-    pinSpacing: false,
-  },
-  x: -1.56,
-  y: 4.67,
-  z: 0.53,
-  duration: 1.5,
-  onUpdate: function () {
-    camera.lookAt(monitorPosition)
-    currentTargetY = 8
-    currentSign = -1
-  }
-})
-.to(camera.position, {
-  scrollTrigger: {
-    trigger: '#skills',
-    toggleActions: "restart none reverse none",
-    scrub: true,
-    pin: true,
-  },
 })
 .to(camera.position, {
   scrollTrigger: {
@@ -270,12 +242,12 @@ tl.to('#loading', {
     pin: true,
     pinSpacing: false,
     },
-  x: -0.11,
-  y: 6.46,
-  z: -6.32,
+  x: -1.56,
+  y: 4.67,
+  z: 0.53,
   duration: 1.5,
   onUpdate: function () {
-    camera.lookAt(frameSetFive)
+    camera.lookAt(monitorPosition)
     currentTargetY = 8
     currentSign = -1
   }
@@ -288,19 +260,6 @@ tl.to('#loading', {
     pin: true,
   }
 })
-
-// gsap js content control
-// gsap.to(".el", {
-//   y: -500,
-//   scrollTrigger: {
-//     trigger: "#skills",
-//     start: "top center",
-//     end: "top 100px",
-//     scrub: true,
-//     markers: true,
-//     id: "scrub"
-//   }
-// })
 
 // mouse move camera
 const mouse = new THREE.Vector2();
