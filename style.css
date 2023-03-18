@@ -283,6 +283,22 @@ blockquote p {
   align-content: center;
 }
 
+#education{
+  display: grid;
+  background-color: transparent;
+  backdrop-filter: none;
+
+  grid-template-columns: repeat(13, 1fr);
+}
+
+#education-div {
+  grid-column: 11 / 14;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: 20vh;
+}
+
 @keyframes background-pan {
   from {
     background-position: 0% center;
