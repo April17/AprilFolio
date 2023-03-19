@@ -228,7 +228,7 @@ tl.to('#loading', {
 })
 .to(camera.position, {
   scrollTrigger: {
-    trigger: '#education',
+    trigger: '#playground',
     toggleActions: "restart none reverse none",
     scrub: true,
     pin: true,
@@ -266,7 +266,7 @@ tl.to('#loading', {
 const mouse = new THREE.Vector2();
 const target = new THREE.Vector2();
 const windowHalf = new THREE.Vector2( window.innerWidth / 2, window.innerHeight / 2 );
-document.addEventListener( 'mousemove', onMouseMove, false );
+// document.addEventListener( 'mousemove', onMouseMove, false );
 
 function onMouseMove( event ) {
 	mouse.x = ( event.clientX + windowHalf.x );
