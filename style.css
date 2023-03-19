@@ -282,6 +282,17 @@ blockquote p {
   padding: 0px;
 }
 
+.one-rem-margin {
+  margin: 1rem;
+}
+
+.project-icon-div {
+  width: calc(50%);
+  display: flex;
+  justify-content: space-between;
+}
+
+
 #experience{
   display: grid;
   justify-content: center;
@@ -341,19 +352,24 @@ blockquote p {
 }
 
 #exp-title {
-  grid-row: 1/2;
-  grid-column: 2/16;
+  grid-row: 2/3;
+  grid-column: 10/16;
 }
 
 #cognizant {
   grid-row: 8/11;
-  grid-column: 6/16;
+  grid-column: 6/17;
   padding: 1rem;
 }
 #infosys {
   grid-row: 3/8;
   grid-column: 10/17;
   padding: 1rem;
+}
+
+#contact-content {
+  display: flex;
+  flex-direction: column;
 }
 
 @keyframes background-pan {
@@ -468,7 +484,7 @@ blockquote p {
 .small-icon {
   width: 3vw;
   height: auto;
-  object-fit: contain;
+  object-fit: cover;
   border-radius: 5px;
 }
 
