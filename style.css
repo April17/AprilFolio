@@ -353,18 +353,29 @@ blockquote p {
 
 #exp-title {
   grid-row: 2/3;
-  grid-column: 10/16;
+  grid-column: 12/16;
 }
 
 #cognizant {
-  grid-row: 8/11;
-  grid-column: 6/17;
+  grid-row: 7/10;
+  grid-column: 12/17;
   padding: 1rem;
 }
 #infosys {
-  grid-row: 3/8;
-  grid-column: 10/17;
+  grid-row: 4/7;
+  grid-column: 12/17;
   padding: 1rem;
+}
+#playground-content {
+  height: calc(100vh - 1px);
+  width: calc(100vw - 1px);
+  display: grid;
+  grid-template-columns: repeat(17, 1fr);
+  grid-template-rows: repeat(11, 1fr);
+}
+#playground-title {
+  grid-row: 2/3;
+  grid-column: 12/16;
 }
 
 #contact-content {

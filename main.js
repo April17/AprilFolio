@@ -2,6 +2,7 @@ import "./style.css"
 import * as THREE from 'three'
 import { gsap, ScrollTrigger } from "gsap/all";
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+import { FirstPersonControls } from 'three/addons/controls/FirstPersonControls.js';
 import anime from 'animejs/lib/anime.es.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { textureMap } from "./textureMap";
@@ -108,7 +109,10 @@ const renderer = new THREE.WebGLRenderer({
 })
 renderer.shadowMap.enabled = true
 renderer.shadowMap.type = THREE.PCFSoftShadowMap
-
+const clock = new THREE.Clock();
+let controls = new FirstPersonControls( camera, renderer.domElement );
+controls.movementSpeed = 150;
+controls.lookSpeed = 0.1;
 // const controls = new OrbitControls(camera, renderer.domElement)
 
 
@@ -397,8 +401,8 @@ function animate(){
   moon.rotation.x += 0.0002
   moon.rotation.y += 0.0002
   moon.rotation.z += 0.0002
-
-  // controls.update()
+  
+  // controls.update( clock.getDelta() )
   requestAnimationFrame(animate)
   renderer.render(scene, camera)
 }
