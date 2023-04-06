@@ -280,9 +280,21 @@ function onMouseMove( event ) {
   camera.rotation.y = camera.rotation.y + currentSign * 0.05 * ( ( 1 - mouse.x ) * 0.002 + currentTargetY * camera.rotation.y) 
 }
 
-new Splide( '.splide',{
+//Slides
+
+new Splide( '#project-slide',{
   type   : 'loop'
 } ).mount();
+
+let preview = document.querySelector("#embedded-preview")
+
+const playgroundSplide = new Splide( '#playground-slide',{
+  type   : 'loop'
+} ).mount();
+
+playgroundSplide.on( 'active', (e) => {
+  preview.src = e.slide.dataset.src
+} );
 
 //Lighting
 
