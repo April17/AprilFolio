@@ -387,6 +387,11 @@ blockquote p {
   grid-column: 14/17;
   padding: 1rem;
 }
+.playground-slide-item{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
 .embedded-project{
   width: 100%;
   height: 100%;
